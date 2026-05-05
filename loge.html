@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | MR. RASHAD</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Cairo', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        .login-wrapper {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+
+        /* --- الجانب الأيمن (الصورة) --- */
+        .image-side {
+            flex: 1.2;
+            background-color: #00aeef;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .teacher-img {
+            max-width: 85%;
+            height: auto;
+            z-index: 2;
+            object-fit: contain;
+            max-height: 90%; 
+        }
+
+        .floating-text {
+            position: absolute;
+            font-size: 10rem;
+            color: rgba(255, 255, 255, 0.15);
+            font-weight: 900;
+            top: 15%;
+            z-index: 1;
+        }
+
+        /* --- الجانب الأيسر (الفورم) --- */
+        .form-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background-color: #ffffff;
+            direction: ltr;
+        }
+
+        .form-content {
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .welcome-text {
+            margin-bottom: 30px;
+        }
+
+        .welcome-text h1 {
+            font-size: 2rem;
+            color: #1e293b;
+            font-weight: 800;
+        }
+
+        .welcome-text p {
+            color: #64748b;
+            margin-top: 5px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1e293b;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .input-container {
+            position: relative;
+        }
+
+        .input-container input {
+            width: 100%;
+            padding: 14px 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            outline: none;
+            font-size: 1rem;
+            background-color: #f8fafc;
+            transition: 0.3s;
+        }
+
+        .input-container input:focus {
+            border-color: #00aeef;
+            box-shadow: 0 0 0 4px rgba(0, 174, 239, 0.1);
+            background-color: #fff;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #94a3b8;
+            cursor: pointer;
+        }
+
+        .forgot-pass {
+            display: block;
+            text-align: right;
+            margin-top: 8px;
+            color: #00aeef;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 16px;
+            background-color: #00aeef;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+
+        .login-btn:hover {
+            background-color: #0f172a; /* يتغير للكحلي ليعطي طابعاً احترافياً */
+            transform: translateY(-2px);
+        }
+
+        /* --- زر إنشاء حساب جديد --- */
+        .register-section {
+            margin-top: 30px;
+            text-align: center;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 20px;
+        }
+
+        .register-section p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .create-account-btn {
+            display: inline-block;
+            color: #0f172a;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: 0.3s;
+            padding: 5px 10px;
+            border-radius: 8px;
+        }
+
+        .create-account-btn:hover {
+            color: #00aeef;
+            background-color: #f0f9ff;
+        }
+
+        /* --- التنسيق للهاتف (وضع رأسي) --- */
+        @media (max-width: 768px) {
+            .login-wrapper {
+                flex-direction: column;
+                height: auto;
+            }
+
+            .image-side {
+                width: 100%;
+                height: 280px;
+                flex: none;
+            }
+
+            .teacher-img {
+                max-width: 180px;
+            }
+
+            .form-side {
+                width: 100%;
+                padding: 30px 20px;
+                flex: none;
+            }
+
+            .welcome-text h1, .welcome-text p {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-wrapper">
+        
+        <!-- الجانب العلوي (موبايل) / الأيمن (كمبيوتر) -->
+        <div class="image-side">
+            
+            <img src="ph/rashad.png" alt="Mr. Rashad" class="teacher-img">
+        </div>
+
+        <!-- جانب البيانات -->
+        <div class="form-side">
+            <div class="form-content">
+                <div class="welcome-text">
+                    <h1>Welcome Back</h1>
+                    <p>Log in to your <strong>English</strong> portal</p>
+                </div>
+
+                <form>
+                    <div class="input-group">
+                        <label>Phone Number</label>
+                        <div class="input-container">
+                            <input type="tel" placeholder="01xxxxxxxxx" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Password</label>
+                        <div class="input-container">
+                            <input type="password" id="passInput" placeholder="••••••••" required>
+                            <i class="fas fa-eye toggle-password" onclick="togglePass()"></i>
+                        </div>
+                        <a href="#" class="forgot-pass">Forgot Password?</a>
+                    </div>
+
+                    <button type="submit" class="login-btn">Login Now</button>
+                </form>
+
+                <!-- زر إنشاء حساب جديد في الأسفل -->
+                <div class="register-section">
+                    <p>New to the platform?</p>
+                    <a href="register.html" class="create-account-btn">
+                        <i class="fas fa-user-plus"></i> Create New Account
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function togglePass() {
+            const input = document.getElementById('passInput');
+            const icon = document.querySelector('.toggle-password');
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = "password";
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+    </script>
+
+</body>
+</html>
